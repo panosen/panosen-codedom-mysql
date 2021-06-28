@@ -35,44 +35,41 @@ namespace Panosen.CodeDom.Mysql
         /// <summary>
         /// AddField
         /// </summary>
-        /// <typeparam name="TMysqlView"></typeparam>
-        /// <param name="mysqlView"></param>
+        /// <typeparam name="TView"></typeparam>
+        /// <param name="view"></param>
         /// <param name="mysqlViewField"></param>
         /// <returns></returns>
-        public static TMysqlView AddField<TMysqlView>(this TMysqlView mysqlView, ViewField mysqlViewField)
-            where TMysqlView : View
+        public static TView AddField<TView>(this TView view, ViewField mysqlViewField)
+            where TView : View
         {
-            if (mysqlView.FieldList == null)
+            if (view.FieldList == null)
             {
-                mysqlView.FieldList = new List<ViewField>();
+                view.FieldList = new List<ViewField>();
             }
 
-            mysqlView.FieldList.Add(mysqlViewField);
+            view.FieldList.Add(mysqlViewField);
 
-            return mysqlView;
+            return view;
         }
 
         /// <summary>
         /// AddField
         /// </summary>
-        /// <typeparam name="TMysqlView"></typeparam>
-        /// <param name="mysqlView"></param>
-        /// <param name="name"></param>
-        /// <returns></returns>
-        public static ViewField AddField<TMysqlView>(this TMysqlView mysqlView, string name)
-            where TMysqlView : View
+        public static ViewField AddField<TView>(this TView mysqlView, string name, string tableFieldName)
+            where TView : View
         {
             if (mysqlView.FieldList == null)
             {
                 mysqlView.FieldList = new List<ViewField>();
             }
 
-            ViewField mysqlViewField = new ViewField();
-            mysqlViewField.Name = name;
+            ViewField viewField = new ViewField();
+            viewField.Name = name;
+            viewField.TableFieldName = tableFieldName;
 
-            mysqlView.FieldList.Add(mysqlViewField);
+            mysqlView.FieldList.Add(viewField);
 
-            return mysqlViewField;
+            return viewField;
         }
     }
 }

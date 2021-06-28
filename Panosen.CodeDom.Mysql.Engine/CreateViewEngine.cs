@@ -34,7 +34,7 @@ namespace Panosen.CodeDom.Mysql.Engine
             GenerateFieldList(view, codeWriter);
 
             codeWriter.WriteLine("FROM")
-                .WriteLine($"`{view.TableName}`;");
+                .WriteLine($"  `{view.TableName}`;");
         }
 
         private void GenerateFieldList(View view, CodeWriter codeWriter)
