@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31205.134
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31410.414
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Panosen.CodeDom.Mysql", "Panosen.CodeDom.Mysql\Panosen.CodeDom.Mysql.csproj", "{356E19FA-A698-4EC4-AEB6-96B1A891A8D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Panosen.CodeDom.Mysql", "Panosen.CodeDom.Mysql\Panosen.CodeDom.Mysql.csproj", "{356E19FA-A698-4EC4-AEB6-96B1A891A8D9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Panosen.CodeDom.Mysql.Engine", "Panosen.CodeDom.Mysql.Engine\Panosen.CodeDom.Mysql.Engine.csproj", "{901467FC-D4C4-4FA9-B4BE-AEDEBCB2BE9B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Panosen.CodeDom.Mysql.Engine", "Panosen.CodeDom.Mysql.Engine\Panosen.CodeDom.Mysql.Engine.csproj", "{901467FC-D4C4-4FA9-B4BE-AEDEBCB2BE9B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Panosen.CodeDom.Mysql.Engine.MSTest", "Panosen.CodeDom.Mysql.Engine.MSTest\Panosen.CodeDom.Mysql.Engine.MSTest.csproj", "{4E2F6387-6602-4302-BAEC-C144EE0427F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{901467FC-D4C4-4FA9-B4BE-AEDEBCB2BE9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{901467FC-D4C4-4FA9-B4BE-AEDEBCB2BE9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{901467FC-D4C4-4FA9-B4BE-AEDEBCB2BE9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E2F6387-6602-4302-BAEC-C144EE0427F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E2F6387-6602-4302-BAEC-C144EE0427F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E2F6387-6602-4302-BAEC-C144EE0427F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E2F6387-6602-4302-BAEC-C144EE0427F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
