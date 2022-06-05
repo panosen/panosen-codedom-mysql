@@ -10,28 +10,27 @@ namespace Panosen.CodeDom.Mysql.Engine.MSTest
         {
             CreateTable createTable = new CreateTable();
 
-            var table = new Table();
-            createTable.Table = table;
-            table.Name = "student";
-            table.FieldList = new System.Collections.Generic.List<Field>();
-            table.FieldList.Add(new Field
+            createTable.Name = "student";
+            createTable.FieldList = new System.Collections.Generic.List<Field>();
+            createTable.FieldList.Add(new Field
             {
                 Name = "id",
                 Comment = "Id",
                 ColumnType = "varchar(20)",
                 AutoIncrement = true
             });
-            table.FieldList.Add(new Field
+            createTable.FieldList.Add(new Field
             {
                 Name = "data_status",
                 Comment = "Name",
                 ColumnType = "varchar(20)"
             });
+            createTable.DefaultCharset = "utf8mb4";
 
             var expected = @"CREATE TABLE `student` (
   `id` varchar(20) AUTO_INCREMENT COMMENT 'Id',
-  `data_status` varchar(20) DEFAULT NULL COMMENT 'Name'
-) DEFAULT CHARSET=utf8mb4;
+  `data_status` varchar(20) COMMENT 'Name'
+) DEFAULT CHARSET = utf8mb4;
 ";
 
             var actual = createTable.TransformText();

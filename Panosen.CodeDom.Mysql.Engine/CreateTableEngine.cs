@@ -18,30 +18,30 @@ namespace Panosen.CodeDom.Mysql.Engine
         /// <param name="codeWriter"></param>
         public void Generate(CreateTable createTable, CodeWriter codeWriter)
         {
-            Generate(createTable.Table, codeWriter);
-        }
-
-        private void Generate(Table table, CodeWriter codeWriter)
-        {
-            if (table == null)
+            if (createTable == null)
             {
                 return;
             }
 
-            codeWriter.WriteLine($"CREATE TABLE `{table.Name ?? string.Empty}` (");
+            codeWriter.WriteLine($"CREATE TABLE `{createTable.Name ?? string.Empty}` (");
 
-            GenerateFields(table.FieldList, table.PrimaryKey, codeWriter);
+            GenerateFields(createTable.FieldList, createTable.PrimaryKey, codeWriter);
 
-            if (!string.IsNullOrEmpty(table.PrimaryKey))
+            if (!string.IsNullOrEmpty(createTable.PrimaryKey))
             {
-                codeWriter.WriteLine($"  PRIMARY KEY (`{table.PrimaryKey}`)");
+                codeWriter.WriteLine($"  PRIMARY KEY (`{createTable.PrimaryKey}`)");
             }
 
-            codeWriter.Write($") DEFAULT CHARSET=utf8mb4");
+            codeWriter.Write($")");
 
-            if (!string.IsNullOrEmpty(table.Comment))
+            if (!string.IsNullOrEmpty(createTable.DefaultCharset))
             {
-                codeWriter.Write($" COMMENT='{table.Comment}'");
+                codeWriter.Write(" DEFAULT CHARSET = ").Write(createTable.DefaultCharset);
+            }
+
+            if (!string.IsNullOrEmpty(createTable.Comment))
+            {
+                codeWriter.Write($" COMMENT='{createTable.Comment}'");
             }
 
             codeWriter.WriteLine(";");
@@ -72,6 +72,15 @@ namespace Panosen.CodeDom.Mysql.Engine
         {
             codeWriter.Write($"  `{field.Name ?? string.Empty}` {field.ColumnType ?? string.Empty}");
 
+            //if (!string.IsNullOrEmpty(field.CharacterSet))
+            //{
+            //    codeWriter.Write(" CHARACTER SET ").Write(field.CharacterSet);
+            //}
+            //if (!string.IsNullOrEmpty(field.Collate))
+            //{
+            //    codeWriter.Write(" COLLATE ").Write(field.Collate);
+            //}
+
             if (field.NotNull)
             {
                 codeWriter.Write(" NOT NULL");
@@ -85,9 +94,10 @@ namespace Panosen.CodeDom.Mysql.Engine
             {
                 codeWriter.Write($" DEFAULT {field.DefaultValue}");
             }
-            else if (!field.NotNull)
+
+            if (!string.IsNullOrEmpty(field.OnUpdate))
             {
-                codeWriter.Write(" DEFAULT NULL");
+                codeWriter.Write(" ON UPDATE ").Write(field.OnUpdate);
             }
 
             if (!string.IsNullOrEmpty(field.Comment))

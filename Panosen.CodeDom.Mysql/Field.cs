@@ -44,6 +44,21 @@ namespace Panosen.CodeDom.Mysql
         /// 在字段之后
         /// </summary>
         public string AfterField { get; set; }
+
+        /// <summary>
+        /// 字符集
+        /// </summary>
+        public string CharacterSet { get; set; }
+
+        /// <summary>
+        /// 核对
+        /// </summary>
+        public string Collate { get; set; }
+
+        /// <summary>
+        /// on update
+        /// </summary>
+        public string OnUpdate { get; set; }
     }
 
     /// <summary>
