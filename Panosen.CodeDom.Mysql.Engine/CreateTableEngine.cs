@@ -14,8 +14,6 @@ namespace Panosen.CodeDom.Mysql.Engine
         /// <summary>
         /// Generate
         /// </summary>
-        /// <param name="createTable"></param>
-        /// <param name="codeWriter"></param>
         public void Generate(CreateTable createTable, CodeWriter codeWriter)
         {
             if (createTable == null)
@@ -53,13 +51,27 @@ namespace Panosen.CodeDom.Mysql.Engine
             {
                 return;
             }
-            for (int i = 0; i < fieldList.Count; i++)
+
+            var firstField = fieldList.FirstOrDefault(v => v.AutoIncrement);
+            var otherFields = fieldList.Where(v => !v.AutoIncrement).ToList();
+
+            List<Field> fields = new List<Field>();
+            if (firstField != null)
             {
-                var field = fieldList[i];
+                fields.Add(firstField);
+            }
+            if (otherFields.Count > 0)
+            {
+                fields.AddRange(otherFields);
+            }
+
+            for (int i = 0; i < fields.Count; i++)
+            {
+                var field = fields[i];
 
                 GenerateField(field, codeWriter);
 
-                if (i < fieldList.Count - 1 || !string.IsNullOrEmpty(primaryKey))
+                if (i < fields.Count - 1 || !string.IsNullOrEmpty(primaryKey))
                 {
                     codeWriter.Write(",");
                 }
